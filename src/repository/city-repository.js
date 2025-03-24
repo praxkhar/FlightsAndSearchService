@@ -1,10 +1,13 @@
 const { City } = require ('../models/index');
 
+// The one way of writting a class
+// without constructor
+
 class CityRepository {
 
     async createCity({ name }) {
         try {
-            const city = await city.create({
+            const city = await City.create({
                 name
             })
             return city;
@@ -32,7 +35,7 @@ class CityRepository {
 
     async updateCity(cityId, data) {
         try {
-            const city = await city.update (data, {
+            const city = await City.update (data, {
                 where: {
                     id: cityId
                 }
@@ -46,7 +49,7 @@ class CityRepository {
 
     async getCity(cityId) {
         try {
-            const city = await city.findByPk(cityId);
+            const city = await City.findByPk(cityId);
             return city;
         } catch (error) {
             console.log("Something went wrong in the repository layer");
