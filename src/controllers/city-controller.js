@@ -31,7 +31,7 @@ const destroy = async (req,res)=> {
     try {
         const response = await cityService.deleteCity(req.params.id);
         return res.status(200).json({
-            data: city,
+            data: response,
             success: true,
             message: "successfully deleted a city",
             err:{} 
@@ -51,7 +51,7 @@ const get = async (req,res)=> {
     try {
         const response = await cityService.getCity(req.params.id);
         return res.status(200).json({
-            data: city,
+            data: response,
             success: true,
             message: "successfully get a city",
             err:{} 
@@ -69,9 +69,9 @@ const get = async (req,res)=> {
 //PATCH -> /city/:id -> req.body (bcz we have data in city-service)
 const update = async (req,res)=> {
     try {
-        const response = await cityService.updateCity(req.params.id, req.body);
+        const response = await cityService.updateCity(req.params.id, req.body); //req.body is a {object} and you pass that {} in the updateCity ie (data) and then use this in city-repository ie (data)
         return res.status(200).json({
-            data: city,
+            data: response,
             success: true,
             message: "successfully updated a city",
             err:{} 
