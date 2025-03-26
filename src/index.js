@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const {PORT} = require('./config/ServerConfig');
 const ApiRoutes = require('./routes/index');
 
-const SetupAndStartServer = async () => {
+const SetupAndStartServer = async () => {   // there is no need of async fnc but later we will do DB connection or somthing else which might be async
     // create express object
     const app = express();
 

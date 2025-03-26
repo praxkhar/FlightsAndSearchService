@@ -1,3 +1,5 @@
+const { Op } = require('sequelize');
+
 const { City } = require ('../models/index');
 
 // The one way of writting a class
@@ -65,8 +67,18 @@ class CityRepository {
         }
     }
 
-    async getAllCities() {
+    async getAllCities(filter) {  // Can also be empty but if this filter will not be there then we will fetch all of the cities.  
         try {
+            if(filter.name) {
+                const cities = await City.findAll({
+                    where: {
+                        name: {
+                            [Op.startsWith]: filter.name
+                        }
+                    }
+                })
+                return cities;
+            }
             const cities = await City.findAll();
             return cities;
         } catch (error) {
